@@ -28,21 +28,34 @@
             @if ($posts->count())
                 @foreach ($posts as $post)
                     <div class="mb-4">
-                        <a href="" class="font-bold">{{ $post->user->name }}</a> 
+                        <a href="" class="font-bold">{{ $post->user->name }}</a>
                         <span class="text-gray-600 text-sm">
                             {{ $post->updated_at->diffForHumans() }}
                         </span>
                         <p class="mb-2">{{ $post->body }}</p>
+                        <div class="flex items-center">
+                            <form action="" method="POST" class="mr-2">
+                                @csrf
+                                <button type="submit" class="text-gray-600">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                            </form>
+                            <form action="" method="POST" class="mx-1">
+                                @csrf
+                                <button type="submit" class="text-gray-600">
+                                    <i class="far fa-thumbs-down"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 @endforeach
 
-                    {{ $posts->links() }}
-
+                {{ $posts->links() }}
             @else
                 <p>No posts.</p>
             @endif
         </div>
 
-        
+
     </div>
 @endsection
