@@ -33,20 +33,26 @@
                             {{ $post->updated_at->diffForHumans() }}
                         </span>
                         <p class="mb-2">{{ $post->body }}</p>
+
                         <div class="flex items-center">
-                            <form action="" method="POST" class="mr-2">
-                                @csrf
-                                <button type="submit" class="text-gray-600">
-                                    <i class="fas fa-thumbs-up"></i>
-                                </button>
-                            </form>
-                            <form action="" method="POST" class="mx-1">
-                                @csrf
-                                <button type="submit" class="text-gray-600">
-                                    <i class="far fa-thumbs-down"></i>
-                                </button>
-                            </form>
+                            @if (!$post->likedBy(auth()->user()))
+                                <form action="{{ route('posts.likes', $post->id) }}" method="POST" class="mr-2">
+                                    @csrf
+                                    <button type="submit" class="text-gray-600">
+                                        <i class="fas fa-thumbs-up"></i>
+                                    </button>
+                                    <span>{{ $post->likes->count() }}</span>
+                                </form>
+                            @else
+                                <form action="" method="POST" class="mx-1">
+                                    @csrf
+                                    <button type="submit" class="text-gray-600">
+                                        <i class="far fa-thumbs-down"></i>
+                                    </button>
+                                </form>
+                            @endif
                         </div>
+
                     </div>
                 @endforeach
 
