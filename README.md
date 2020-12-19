@@ -1,4 +1,4 @@
-A message board where users can create and edit messages.
+A message board where users can create and like messages.
 
 
-Technologies: Bootstrap, Laravel, PHP, TailwindCSS
+Technologies: Laravel, PHP, TailwindCSS
